@@ -1,0 +1,133 @@
+<button mat-raised-button 
+  color="warn" 
+  style="margin-top: 2%; margin: left 1%;"
+  (click)="OpenDialoge()"
+>
+<mat-icon color="white">add_circle</mat-icon>
+Add New Product
+</button>
+<br>
+<br>
+<mat-divider class="dividerstyle"></mat-divider>
+
+<mat-form-field appearance="standard">
+   <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+</mat-form-field> 
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+
+  <!-- Price Column -->
+  <ng-container matColumnDef="price">
+    <th mat-header-cell *matHeaderCellDef> Price </th>
+    <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+  </ng-container>
+
+  <!-- Quantity Column -->
+  <ng-container matColumnDef="quantity">
+    <th mat-header-cell *matHeaderCellDef> Quantity </th>
+    <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+  </ng-container>
+  
+  <!-- Image Column -->
+  <ng-container matColumnDef="image">
+    <th mat-header-cell *matHeaderCellDef> Image </th>
+    <td mat-cell *matCellDef="let element"> <img src="http://localhost:34300/Resources/Images/{{element.image}}" class="img"> </td>
+  </ng-container>
+
+  <!-- Detail Column -->
+  <ng-container matColumnDef="detail">
+    <th mat-header-cell *matHeaderCellDef>Details  </th>
+    <td mat-cell *matCellDef="let element">
+      <a name="" id="" class="btn  "  role="button" (click)="OpenProductDetials()">
+      <i class="fa fa-info-circle text-dark fa-1x" aria-hidden="true"></i>
+     </a> 
+     </td>
+  </ng-container>
+
+  <!-- edit Column -->
+  <ng-container matColumnDef="edit">
+    <th mat-header-cell *matHeaderCellDef> Edit </th>
+    <td mat-cell *matCellDef="let element"> 
+        <a name="" id="" class="btn "  role="button" routerLink="/EditProduct/{{element.id}}">
+        <i class="fa fa-pencil text-primary fa-1x" aria-hidden="true"></i>
+        </a>
+     </td>
+  </ng-container>
+
+  <!-- Delete Column -->
+  <ng-container matColumnDef="delete">
+    <th mat-header-cell *matHeaderCellDef> Delete </th>
+    <td mat-cell *matCellDef="let element"> 
+      <a name="" id="" class="btn "  role="button" (click)="confirmingDelet(element.id)" >
+      <i class="fa fa-trash-o text-danger fa-1x" aria-hidden="true"></i> 
+     
+     
+      </a> </td>
+  </ng-container>
+
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns" ></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="OnRowClicked(row)"></tr>
+   
+  
+  <tr class="mat-row" *matNoDataRow>
+    <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+  </tr> 
+</table>
+<!-- <div *ngIf="expression">
+
+</div> -->
+
+
+
+<!-- <div class="table-responsive-sm">
+  
+ <table  class="table table-hover justify-content-around " >
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Price</th>
+            <th scope="col">Image</th>
+           
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+          </tr>
+    </thead>
+    <tbody>
+     
+       <tr  *ngFor="let item of NewProductList " [ngStyle]="{'background-color':item.quantity==1? 'yellow':'white'}" > 
+        
+          <td>{{item.name}} </td>
+          <td >{{item.quantity}} </td>
+          <td> {{item.price | currency   : 'EGP'}} </td>
+          <td>
+              <img src="{{item.image}}" class="img">
+              
+          </td>  
+         
+          <td>
+            <a name="" id="" class="btn "  role="button" (click)="OpenDialogeEdit(item.id)">
+              <i class="fa fa-pencil text-primary fa-1x" aria-hidden="true"></i>
+             </a>
+          </td>
+          <td>
+           <a name="" id="" class="btn "  role="button" (click)="deleteProduct(item.id)" >
+            <i class="fa fa-trash-o text-danger fa-1x" aria-hidden="true"></i> 
+           
+           
+            </a>
+          </td>
+       </tr>
+     
+    </tbody>
+  </table> 
+</div> -->
+

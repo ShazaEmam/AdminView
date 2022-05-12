@@ -1,0 +1,14 @@
+
+<mat-card class="example-card" *ngIf="recivedRow" style="align-items: center;">
+
+  <img mat-card-image src="{{recivedRow.image}}" class="border">
+  <mat-card-content>
+    <h1>Product Name : {{recivedRow.name}}</h1>
+    <h3>Product Price : {{recivedRow.price | currency: 'EGP'}}</h3>
+    <h3>Product Quantity : {{recivedRow.quantity}}</h3>
+  </mat-card-content>
+  <mat-card-actions  >
+    <button mat-raised-button (click)="close()" >Close</button>
+  </mat-card-actions>
+</mat-card>
+ 
